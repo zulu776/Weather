@@ -24,7 +24,7 @@ const CityProvider = ({children}) => {
         
         
         const API = 
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_API_KEY}&units=metric`;
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=5c94bb29a39974f68dece341391a6153&units=metric`;
            
         const response = await fetch(API);
         const result = await response.json();
