@@ -31,35 +31,24 @@ const CityProvider = ({children}) => {
        
         setLoader(false);
 
-        if(result.cod === 404) {
-            setError(true)
-            setCityInformation(null);
-        } else {
+        console.log(result.cod)
+
+        if(result.cod === 200) {
+            // setError(true);
+            // setCityInformation(null);
             setError(false);
             setCityInformation(result);
+            const URL= `https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
+
+            setImg(URL);
+        } else {
+            // setError(false);
+            // setCityInformation(result);
+            setError(true);
+            setCityInformation(null);
         }
 
-        
-
-        const URL= `https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
-
-        setImg(URL);
-
     }
-
-// useEffect(() => {
-//     const handleImgWeather = () => {
-
-//         setWeather(cityInformation.weather[0].icon);
-
-//         const URL= `https://openweathermap.org/img/wn/${weather}@2x.png`;
-
-//         setImg(URL);
-//     }
-//     {cityInformation && handleImgWeather()}
-
-// }, [handleSearchWeather])
-
 
     const data = {
         cityName, setCityName,
