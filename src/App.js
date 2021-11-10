@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-function App() {
+//Context
+import { CityProvider } from "./Context/CityContext";
+
+//Layout
+import MainLayout from "./Layout/MainLayout";
+
+import Home from "./Pages/Home/Home";
+import WeatherInformation from "./Pages/WeatherInformation/WeatherInformation"
+import Error from "./Pages/Error/Error";
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CityProvider>
+        <BrowserRouter>
+          <MainLayout>
+            <Switch>
+
+              <Route path="/" exact>
+                <Home />
+              </Route>
+
+              <Route path="/weather/:name" exact>
+                <WeatherInformation />
+              </Route>
+
+              <Route path="*" exact>
+                <Error />
+              </Route>
+
+            </Switch>
+          </MainLayout>
+        </BrowserRouter>
+      </CityProvider>
     </div>
   );
 }
